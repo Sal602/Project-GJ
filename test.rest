@@ -1,0 +1,16 @@
+Post http://127.0.0.1:8000/login
+Content-Type: application/json
+
+{"username": "gabe2", "password": "Pass1234"}
+
+###
+POST http://127.0.0.1:8000/signup
+Content-Type: application/json
+
+{"username": "gabe", "password": "Pass1234", "email": "gabe@gmail.com"}
+
+###
+GET http://127.0.0.1:8000/test_token
+Content-Type: application/json
+
+{"username": "nef", "password": "Pass1234", "email": "gabe@gmail.com"}
