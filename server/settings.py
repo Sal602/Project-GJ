@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    #'user_sessions', Look into Changing this to something else 
+    'study_session', #Look into Changing this to something else 
 ]
 
 MIDDLEWARE = [
