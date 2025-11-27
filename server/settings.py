@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'study_session', #Look into Changing this to something else 
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+]
+
+#ALLOWS REACT/VITE SERVER TO COMMUNICATE WITH DJANGO
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  #FRONTEND SERVER WHILE DEVELOPING
 ]
 
 ROOT_URLCONF = 'server.urls'
