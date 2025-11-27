@@ -1,5 +1,6 @@
 import "./LoginSignUp.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 /*
   SIGNUP PAGE
@@ -12,10 +13,10 @@ import { useState } from "react";
   Styling comes from LoginSignUp.css.
 */
 
-{/*This Calls Django to be able to connect Frontend with Backend*/}
+//This Calls Django to be able to connect Frontend with Backend
 const API_BASE = "http://127.0.0.1:8000"; 
 
-function SignupPage() {
+export default function Signup() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
@@ -54,19 +55,50 @@ function SignupPage() {
   }
 
   return (
-   <div className="auth-container">
-      <h1>Signup</h1>
+    <div className="auth-root">
+      {/* Top nav tabs */}
+      <div className="auth-tabs">
+        <Link to="/login" className="auth-tab">
+          Login
+        </Link>
+        <Link to="/signup" className="auth-tab auth-tab--active">
+          Signup
+        </Link>
+      </div>
 
-      <form onSubmit={handleSubmit}>
-        <input name="username" placeholder="Username" />
-        <input name="email" placeholder="Email" type="email" />
-        <input name="password" placeholder="Password" type="password" />
-        <button>Sign Up</button>
-      </form>
+      {/* Title */}
+      <div className="auth-header">
+        <h1 className="auth-title">Sign up</h1>
+        <p className="auth-subtitle">Create an account to begin your journey.</p>
+      </div>
 
-      {status && <p className="status-message">{status}</p>}
+      {/* Card */}
+      <div className="auth-card">
+        <form className="auth-form">
+          <input
+            className="auth-input"
+            type="text"
+            placeholder="Username"
+          />
+          <input
+            className="auth-input"
+            type="email"
+            placeholder="Email"
+          />
+          <input
+            className="auth-input"
+            type="password"
+            placeholder="Password"
+          />
+          <button type="submit" className="auth-button">
+            Sign Up
+          </button>
+        </form>
+      </div>
+
+      <p className="auth-footer">
+        Already have an account? <Link to="/login">Log in</Link>
+      </p>
     </div>
   );
 }
-
-export default SignupPage;
