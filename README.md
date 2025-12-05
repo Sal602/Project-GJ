@@ -1,98 +1,75 @@
-📚 PROJECT-GJ — Django + React (Vite) Full Stack App
+#📚 PROJECT-GJ — Django + React (Vite) Full Stack App
 
-This repository contains a full-stack web application built with:
+##This repository contains a full-stack web application built with:
 
-Backend: Django + Django REST Framework + Token Authentication
+-Backend: Django + Django REST Framework + Token Authentication
+-Frontend: React + Vite
+-Database: PostgreSQL
+    -The app uses Django as an API backend only, with React handling all frontend UI.
 
-Frontend: React + Vite
+#🚀 Features Implemented So Far
 
-Database: PostgreSQL
+##Backend
 
-The app uses Django as an API backend only, with React handling all frontend UI.
+-Token-based authentication
+-User registration (/api/signup/)
+-User login (/api/login/)
+-CORS enabled for frontend
+-Admin panel for user management
+-API endpoints return JSON only (no HTML templates)
 
-🚀 Features Implemented So Far
+##Frontend
+-Vite + React app
+-Login page
+-Signup page
+-Shared CSS styling
+-Token + user stored in localStorage
+-React Router for navigation
 
-Backend
+#📦 Technology Stack
 
-Token-based authentication
+##Backend
+-Python 3
+-Django
+-Django REST Framework (DRF)
+-django-cors-headers
 
-User registration (/api/signup/)
+##Frontend
+-Node.js + npm
+-React
+-Vite
+-react-router-dom
 
-User login (/api/login/)
+#⚙️ 2. Quick Start Guide (Backend + Frontend)
 
-CORS enabled for frontend
+##🔧 Backend Setup (Django)
 
-Admin panel for user management
-
-API endpoints return JSON only (no HTML templates)
-
-Frontend
-
-Vite + React app
-
-Login page
-
-Signup page
-
-Shared CSS styling
-
-Token + user stored in localStorage
-
-React Router for navigation
-
-📦 Technology Stack
-
-Backend
-
-Python 3
-
-Django
-
-Django REST Framework (DRF)
-
-django-cors-headers
-
-Frontend
-
-Node.js + npm
-
-React
-
-Vite
-
-react-router-dom
-
-⚙️ 2. Quick Start Guide (Backend + Frontend)
-
-🔧 Backend Setup (Django)
-
-1️⃣ Create / activate virtual environment
-
+1. Create / activate virtual environment
+```bash
 python -m venv venv
 
 source venv/bin/activate      # Mac/Linux
 
 venv\Scripts\activate         # Windows
-
-2️⃣ Install dependencies
-
+```
+2. Install dependencies
+```bash
 pip install -r requirements.txt
-
-3️⃣ Run migrations
-
+```
+3. Run migrations
+```bash
 python manage.py migrate
-
-4️⃣ Start backend server
-
+```
+4. Start backend server
+```bash
 python manage.py runserver
+```
+##Backend runs at:
 
-Backend runs at:
+###👉 http://127.0.0.1:8000
+##🎨 Frontend Setup (Vite + React)
 
-👉 http://127.0.0.1:8000
-
-🎨 Frontend Setup (Vite + React)
-
-Project Structure
+5.Project Structure
 
 frontend/
 
