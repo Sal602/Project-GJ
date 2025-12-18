@@ -7,7 +7,8 @@ future app features
 Django is purely the backend API now
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
@@ -15,4 +16,7 @@ urlpatterns = [
     path("api/login/", views.api_login, name="api_login"),
     path('test_token/', views.test_token),
     path("api/ping/", views.ping, name="ping"),
+    path("study_session/", include("study_session.urls")),
+    # Redirect the site root to the study_session list page
+    path('', RedirectView.as_view(url='/study_session/', permanent=False)),
 ]
