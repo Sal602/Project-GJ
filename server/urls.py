@@ -17,6 +17,7 @@ urlpatterns = [
     path('test_token/', views.test_token),
     path("api/ping/", views.ping, name="ping"),
     path("study_session/", include("study_session.urls")),
+    path("api/study_session/", include("study_session.api_urls")),
     # Redirect the site root to the study_session list page
     path('', RedirectView.as_view(url='/study_session/', permanent=False)),
 ]
