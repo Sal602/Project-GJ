@@ -11,6 +11,10 @@ class StudySessionViewSet(viewsets.ModelViewSet):
     queryset = study_session.objects.all().order_by('-start_time')
     serializer_class = StudySessionSerializer
 
+    def perform_create(self, serializer):
+        # assign the creating user server-side to avoid trusting client data
+        serializer.save(user=self.request.user)
+
     @action(detail=True, methods=['post'])
     def end(self, request, pk=None):
         session = self.get_object()
