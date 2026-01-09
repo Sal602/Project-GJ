@@ -23,6 +23,19 @@ export default function StartSession(){
         'Content-Type':'application/json',
         ...getAuthHeader()
       },
+      body: JSON.stringify({
+        subject,
+        goal_time: goal
+      })
+    }).then(r => r.json()).then(() => {
+      navigate('/session-list');
+    });
+  }
+
+  return (
+    <div>
+      <h1>Start Study Session</h1>
+      <form onSubmit={submit}>
         <div>
           <label>Subject</label>
           <input value={subject} onChange={e => setSubject(e.target.value)} required />

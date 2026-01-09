@@ -26,4 +26,19 @@ export default function SessionDetail(){
   useEffect(()=>{
     fetch(`/api/study_session/${id}/`, {
       headers: getAuthHeader(),
-    }).then(r=>r.json()).then(setSession)
+    }).then(r=>r.json()).then(setSession);
+  }, [id]);
+
+  if (!session) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1>{session.subject}</h1>
+      <p><strong>Start Time:</strong> {formatDateTime(session.start_time)}</p>
+      <p><strong>End Time:</strong> {formatDateTime(session.end_time)}</p>
+      <p><strong>Goal Time:</strong> {session.goal_time}</p>
+      <p><strong>Actual Time:</strong> {session.actual_time}</p>
+      <Link to="/session-list">Back to Sessions</Link>
+    </div>
+  );
+}
