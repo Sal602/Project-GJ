@@ -4,7 +4,7 @@ from django.conf import settings
 # This is going to represent the info on a study session
 
 class study_session(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE, related_name='study_sessions')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='study_sessions')
     # We should think about data we want to store for a study session
     # ie. Start time, End time, total time, date 
     # Possible: Study Subject, Goal study time etc

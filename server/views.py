@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse #Adds API endpoint
 from django.contrib.auth import authenticate
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework_simplejwt.tokens import RefreshToken
 import json
 
 """
@@ -56,13 +57,17 @@ def api_login(request):
     if user is None:
         return JsonResponse({"detail": "Invalid credentials"}, status=400)
 
-    # For now just return basic user info.
-    # Later you can swap this for JWT / token auth.
+    # Generate JWT tokens
+    refresh = RefreshToken.for_user(user)
     return JsonResponse(
         {
-            "id": user.id,
-            "username": user.username,
-            "email": user.email,
+            "access": str(refresh.access_token),
+            "refresh": str(refresh),
+            "user": {
+                "id": user.id,
+                "username": user.username,
+                "email": user.email,
+            }
         }
     )
 
@@ -103,11 +108,17 @@ def api_signup(request):
 
     user = User.objects.create_user(username=username, email=email, password=password)
 
+    # Generate JWT tokens
+    refresh = RefreshToken.for_user(user)
     return JsonResponse(
         {
-            "id": user.id,
-            "username": user.username,
-            "email": user.email,
+            "access": str(refresh.access_token),
+            "refresh": str(refresh),
+            "user": {
+                "id": user.id,
+                "username": user.username,
+                "email": user.email,
+            }
         },
         status=201,
     )

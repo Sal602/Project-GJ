@@ -1,18 +1,17 @@
 import "./LoginSignUp.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /*
   LOGIN PAGE
   This React component handles user login by sending a POST request
   to our Django backend (/api/login/). 
   On success, Django returns:
-  - token: used for authenticated API requests
+  - access: JWT access token for authenticated API requests
+  - refresh: JWT refresh token to get new access tokens
   - user: basic user info (id, username, email)
 
-  WORK ON STORING TOKEN AND USER TO DB TO BE ABLE TO FURTHER 
-  CONNECT TO DASHBOARD,STATS,ETC.
-  FORGOT PASSWORD NOT CONNECTED TO ANYTHING NEEDS A LINK CONNECTED TO IT
+  The access token is stored in localStorage and sent with all API requests.
   Styling comes from LoginSignUp.css.
 */
 
@@ -23,6 +22,7 @@ function LoginPage() {
   const [form, setForm] = useState({ username: "", password: "" });
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -48,8 +48,14 @@ function LoginPage() {
       if (!res.ok) {
         setStatus(data.detail || "Login failed");
       } else {
-        setStatus(`Logged in as ${data.username}`);
-        // TODO: save token / user info in context or localStorage later
+        // Store JWT token and user info in localStorage
+        localStorage.setItem("token", data.access);
+        localStorage.setItem("refreshToken", data.refresh);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        
+        setStatus(`Logged in as ${data.user.username}`);
+        // Navigate to study sessions after successful login
+        setTimeout(() => navigate("/study_session"), 500);
       }
     } catch (err) {
       console.error(err);
@@ -82,10 +88,10 @@ function LoginPage() {
         <form className="auth-form" onSubmit={handleSubmit}>
           <input
             className="auth-input"
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={form.username}
             onChange={handleChange}
             required
           />

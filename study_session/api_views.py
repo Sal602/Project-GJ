@@ -1,6 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
 
 from .models import study_session
@@ -10,9 +11,9 @@ from .serializers import StudySessionSerializer
 class StudySessionViewSet(viewsets.ModelViewSet):
     queryset = study_session.objects.all().order_by('-start_time')
     serializer_class = StudySessionSerializer
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        # assign the creating user server-side to avoid trusting client data
         serializer.save(user=self.request.user)
 
     @action(detail=True, methods=['post'])

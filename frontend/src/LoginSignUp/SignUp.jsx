@@ -1,15 +1,14 @@
 import "./LoginSignUp.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /*
   SIGNUP PAGE
 
   Handles user registration by POSTing form data to /api/signup/
 
-  Django returns a token + user info on successful signup.
-  
-  WORK ON WRITING THIS TO DB ASAP  
+  Django returns JWT tokens (access and refresh) + user info on successful signup.
+  The tokens are stored in localStorage for authenticated API requests.
   Styling comes from LoginSignUp.css.
 */
 
@@ -20,6 +19,7 @@ export default function Signup() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -44,7 +44,14 @@ export default function Signup() {
       if (!res.ok) {
         setStatus(data.detail || "Signup failed");
       } else {
-        setStatus(`Account created for ${data.username}`);
+        // Store JWT token and user info in localStorage
+        localStorage.setItem("token", data.access);
+        localStorage.setItem("refreshToken", data.refresh);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        
+        setStatus(`Account created for ${data.user.username}`);
+        // Navigate to study sessions after successful signup
+        setTimeout(() => navigate("/study_session"), 500);
       }
     } catch (err) {
       console.error(err);
@@ -74,26 +81,40 @@ export default function Signup() {
 
       {/* Card */}
       <div className="auth-card">
-        <form className="auth-form">
+        <form className="auth-form" onSubmit={handleSubmit}>
           <input
             className="auth-input"
             type="text"
+            name="username"
             placeholder="Username"
+            value={form.username}
+            onChange={handleChange}
+            required
           />
           <input
             className="auth-input"
             type="email"
+            name="email"
             placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            required
           />
           <input
             className="auth-input"
             type="password"
+            name="password"
             placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            required
           />
-          <button type="submit" className="auth-button">
-            Sign Up
+          <button type="submit" className="auth-button" disabled={loading}>
+            {loading ? "Creating account..." : "Sign Up"}
           </button>
         </form>
+
+        {status && <p className="auth-status">{status}</p>}
       </div>
 
       <p className="auth-footer">

@@ -18,22 +18,12 @@ export default function SessionDetail(){
   const { id } = useParams();
   const [session, setSession] = useState(null);
 
+  const getAuthHeader = () => {
+    const token = localStorage.getItem('token');
+    return token ? { 'Authorization': `Bearer ${token}` } : {};
+  }
+
   useEffect(()=>{
-    fetch(`/api/study_session/${id}/`).then(r=>r.json()).then(setSession)
-  },[id]);
-
-  if(!session) return <div>Loading...</div>;
-
-  return (
-    <div className="container">
-      <h2>Session: {session.study_subject}</h2>
-      <p>Date: {session.date}</p>
-      <p>Start: {formatDateTime(session.start_time)}</p>
-      <p>End: {session.end_time ? formatDateTime(session.end_time) : '(ongoing)'}</p>
-      <p>Total: {session.total_time || '(not available)'}</p>
-      <p>Goal: {session.goal_time}</p>
-      <p>Goal Passed: {String(session.goal_passed)}</p>
-      <Link to="/study_session">Back</Link>
-    </div>
-  )
-}
+    fetch(`/api/study_session/${id}/`, {
+      headers: getAuthHeader(),
+    }).then(r=>r.json()).then(setSession)
