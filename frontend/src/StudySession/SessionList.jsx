@@ -38,6 +38,38 @@ export default function SessionList() {
       method: 'POST',
       headers: getAuthHeader(),
     });
+    fetchSessions();
+  }
+
+  return (
+    <div>
+      <h1>Study Sessions</h1>
+      <Link to="/start-session">Start New Session</Link>
+      <table>
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Goal Time</th>
+            <th>Actual Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sessions.map((session) => (
+            <tr key={session.id}>
+              <td><Link to={`/session/${session.id}`}>{session.subject}</Link></td>
+              <td>{formatDateTime(session.start_time)}</td>
+              <td>{formatDateTime(session.end_time)}</td>
+              <td>{session.goal_time}</td>
+              <td>{session.actual_time}</td>
+              <td>
+                {!session.end_time && (
+                  <button onClick={() => endSession(session.id)}>End Session</button>
+                )}
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>
