@@ -5,6 +5,14 @@ from django.conf import settings
 
 class study_session(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='study_sessions')
+    # Optional link to a Challenge. Use SET_NULL so sessions remain if a challenge is removed.
+    challenge = models.ForeignKey(
+        'challenge.Challenge',
+        on_delete=models.SET_NULL,
+        related_name='challenge_sessions',
+        null=True,
+        blank=True,
+    )
     # We should think about data we want to store for a study session
     # ie. Start time, End time, total time, date 
     # Possible: Study Subject, Goal study time etc

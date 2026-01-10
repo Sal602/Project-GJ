@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'study_session', #Look into Changing this to something else 
-    'corsheaders'
+    'corsheaders',
+    'challenge',
 ]
 
 MIDDLEWARE = [
