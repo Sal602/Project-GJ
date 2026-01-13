@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 */
 
 //This Calls Django to be able to connect Frontend with Backend
-const API_BASE = "http://127.0.0.1:8000"; 
+const API_BASE = "http://127.0.0.1:8000";
 
 export default function Signup() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
@@ -48,10 +48,10 @@ export default function Signup() {
         localStorage.setItem("token", data.access);
         localStorage.setItem("refreshToken", data.refresh);
         localStorage.setItem("user", JSON.stringify(data.user));
-        
+
         setStatus(`Account created for ${data.user.username}`);
-        // Navigate to study sessions after successful signup
-        setTimeout(() => navigate("/study_session"), 500);
+        // Navigate to Dashboard after successful signup
+        setTimeout(() => navigate("/dashboard"), 500);
       }
     } catch (err) {
       console.error(err);

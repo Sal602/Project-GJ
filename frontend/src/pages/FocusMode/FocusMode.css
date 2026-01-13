@@ -1,0 +1,191 @@
+.focus-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    /* Use min-height to allow scroll on small screens */
+    width: 100%;
+    position: relative;
+    color: var(--text-main);
+    text-align: center;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    /* Allow scrolling content */
+}
+
+.focus-bg-css {
+    position: fixed;
+    /* Fixed to viewport */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(114, 213, 182, 0.1) 100%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+[data-theme="dark"] .focus-bg-css {
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+.focus-content {
+    z-index: 1;
+    background: var(--bg-card);
+    /* Theme aware */
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    width: 100%;
+    max-width: 480px;
+    margin: auto;
+    transition: all 0.3s ease;
+}
+
+.focus-header h1 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.focus-active-status h3 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: var(--spacing-lg);
+    word-break: break-word;
+    /* Handle long words */
+}
+
+/* Inputs */
+.focus-input-group {
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: left;
+}
+
+.focus-input-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.focus-input {
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-input);
+    /* Theme aware */
+    color: var(--text-main);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.focus-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(114, 213, 182, 0.2);
+}
+
+/* Timer Display */
+.timer-display {
+    font-size: 5rem;
+    /* Large but scalable */
+    font-weight: 700;
+    color: var(--text-main);
+    font-variant-numeric: tabular-nums;
+    margin: var(--spacing-lg) 0;
+    line-height: 1;
+}
+
+/* Controls */
+.timer-controls {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    /* Wrap on tiny screens */
+}
+
+.control-btn {
+    padding: 14px 36px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+    min-width: 120px;
+}
+
+.control-btn:active {
+    transform: scale(0.96);
+}
+
+.btn-start {
+    background-color: var(--color-primary);
+    color: var(--text-invert);
+    box-shadow: 0 4px 14px rgba(114, 213, 182, 0.4);
+}
+
+.btn-start:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.btn-stop {
+    background-color: #fc8181;
+    color: white;
+}
+
+.btn-stop:hover {
+    background-color: #f56565;
+}
+
+.btn-pause {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.btn-pause:hover {
+    background-color: var(--border-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .focus-content {
+        padding: var(--spacing-lg);
+        max-width: 100%;
+    }
+
+    .timer-display {
+        font-size: 4rem;
+        /* Smaller on mobile */
+    }
+
+    .focus-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .control-btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+        min-width: 100px;
+    }
+}
+
+@media (max-height: 600px) {
+
+    /* Landscape phone or small height */
+    .focus-container {
+        padding: var(--spacing-sm);
+    }
+
+    .timer-display {
+        margin: var(--spacing-sm) 0;
+        font-size: 3rem;
+    }
+}

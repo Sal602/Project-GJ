@@ -1,0 +1,71 @@
+:root {
+  /* Brand Colors - Nature/Soft Theme */
+  --color-primary: #72d5b6;
+  /* Soft Teal/Green */
+  --color-primary-dark: #5bc0a0;
+  --color-secondary: #3b4d61;
+  /* Dark Blue-Gray */
+  --color-accent: #86efac;
+  /* Brighter Green */
+
+  /* Backgrounds (Default Light) */
+  --bg-main: #f0f4f8;
+  --bg-card: #ffffff;
+  --bg-sidebar: #ffffff;
+  --bg-input: #ffffff;
+
+  /* Typography (Default Light) */
+  --text-main: #2d3748;
+  --text-muted: #718096;
+  --text-light: #ffffff;
+  --text-invert: #ffffff;
+  /* Text on primary buttons */
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Borders & Shadows */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --border-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  --color-primary: #72d5b6;
+  /* Keep brand color same or slightly dimmer? keeping same for pop */
+  --color-primary-dark: #86efac;
+  /* Lighter hover in dark mode */
+  --color-secondary: #e2e8f0;
+  /* Secondary text becomes light */
+
+  --bg-main: #171923;
+  /* Deep dark blue-gray */
+  --bg-card: #2d3748;
+  /* Dark gray card */
+  --bg-sidebar: #1a202c;
+  /* Slightly darker sidebar */
+  --bg-input: #2d3748;
+
+  --text-main: #f7fafc;
+  /* White-ish text */
+  --text-muted: #a0aec0;
+  /* Gray text */
+  --text-invert: #1a202c;
+  /* Dark text on primary buttons if needed, or keep white */
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+
+  --border-color: rgba(255, 255, 255, 0.05);
+}

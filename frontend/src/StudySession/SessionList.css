@@ -1,0 +1,127 @@
+.history-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.history-header h1 {
+    font-size: 28px;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-main);
+}
+
+.history-header p {
+    color: var(--text-muted);
+}
+
+/* Table / List Layout */
+.table-responsive {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+}
+
+.table-header-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr 1fr;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--bg-main);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr 1fr;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+    align-items: center;
+    transition: background-color 0.1s;
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.table-row:hover {
+    background-color: var(--bg-main);
+}
+
+.col {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 16px;
+    color: var(--text-main);
+}
+
+.col.subject {
+    font-weight: 600;
+    color: var(--color-primary-dark);
+}
+
+.col.date {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge.active {
+    background-color: #bee3f8;
+    color: #2b6cb0;
+}
+
+.badge.completed {
+    background-color: #c6f6d5;
+    color: #276749;
+}
+
+[data-theme="dark"] .badge.active {
+    background-color: rgba(66, 153, 225, 0.2);
+    color: #63b3ed;
+}
+
+[data-theme="dark"] .badge.completed {
+    background-color: rgba(72, 187, 120, 0.2);
+    color: #68d391;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .table-header-row {
+        display: none;
+        /* Hide headers on small screens */
+    }
+
+    .table-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .col {
+        font-size: 14px;
+    }
+
+    .col.subject {
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+
+    .col.status {
+        margin-top: 4px;
+    }
+}

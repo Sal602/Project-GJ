@@ -52,10 +52,10 @@ function LoginPage() {
         localStorage.setItem("token", data.access);
         localStorage.setItem("refreshToken", data.refresh);
         localStorage.setItem("user", JSON.stringify(data.user));
-        
+
         setStatus(`Logged in as ${data.user.username}`);
-        // Navigate to study sessions after successful login
-        setTimeout(() => navigate("/study_session"), 500);
+        // Navigate to Dashboard after successful login
+        setTimeout(() => navigate("/dashboard"), 500);
       }
     } catch (err) {
       console.error(err);
@@ -110,7 +110,7 @@ function LoginPage() {
           </button>
         </form>
 
-        <p className="auth-meta">Forgot Password?</p> 
+        <p className="auth-meta">Forgot Password?</p>
 
         {status && <p className="auth-status">{status}</p>}
       </div>

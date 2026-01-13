@@ -1,154 +1,156 @@
-/* Make the page take full height and remove default margins */
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-}
-
-/* Main wrapper for login / signup pages */
+/* Main wrapper */
 .auth-root {
   min-height: 100vh;
   width: 100%;
-  background: #cfe8ff; /* light blue */
+  background: linear-gradient(135deg, var(--bg-main) 0%, #e6fffa 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px 16px;
+  padding: var(--spacing-lg);
+  position: relative;
 }
 
-/* Top nav tabs (Login | Signup) */
+/* Tabs */
 .auth-tabs {
-  position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-bottom: var(--spacing-lg);
   display: flex;
-  gap: 16px;
-  font-size: 0.9rem;
+  gap: var(--spacing-lg);
 }
 
 .auth-tab {
   text-decoration: none;
-  color: #4f46e5;
-  padding-bottom: 2px;
+  color: var(--text-muted);
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 4px;
+  transition: all 0.2s;
+}
+
+.auth-tab:hover {
+  color: var(--color-primary);
 }
 
 .auth-tab--active {
+  color: var(--color-primary-dark);
+  border-bottom-color: var(--color-primary);
   font-weight: 600;
-  border-bottom: 2px solid #4f46e5;
 }
 
-/* Title + subtitle */
+/* Title */
 .auth-header {
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
 }
 
 .auth-title {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 32px;
   font-weight: 700;
-  color: #020617;
+  color: var(--color-secondary);
 }
 
 .auth-subtitle {
-  margin: 4px 0 0;
-  font-size: 0.9rem;
-  color: #4b5563;
+  margin-top: var(--spacing-xs);
+  color: var(--text-muted);
 }
 
 /* Card */
 .auth-card {
   width: 100%;
-  max-width: 380px;
-  background: #020617;
-  border-radius: 24px;
-  padding: 26px 24px 20px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
-  color: #f9fafb;
+  max-width: 400px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Form layout */
+/* Form */
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--spacing-md);
 }
 
 /* Inputs */
 .auth-input {
+  width: 100%;
   padding: 12px 16px;
-  border-radius: 999px;
-  border: 1px solid #111827;
-  background: #020617;
-  color: #f9fafb;
-  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #e2e8f0;
+  background: #f7fafc;
+  color: var(--text-main);
+  font-size: 16px;
   outline: none;
-  box-shadow: inset 0 0 0 1px #111827;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.auth-input:focus {
+  border-color: var(--color-primary);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(114, 213, 182, 0.2);
 }
 
 .auth-input::placeholder {
-  color: #6b7280;
+  color: var(--text-muted);
 }
 
 /* Button */
 .auth-button {
-  margin-top: 4px;
-  padding: 12px 16px;
-  border-radius: 999px;
+  margin-top: var(--spacing-sm);
+  padding: 12px;
+  border-radius: var(--radius-sm);
   border: none;
-  background: #ffffff;
-  color: #020617;
+  background: var(--color-primary);
+  color: white;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
-  transition: transform 0.08s ease, box-shadow 0.08s ease, opacity 0.08s ease;
+  transition: background-color 0.2s;
+  box-shadow: var(--shadow-sm);
 }
 
 .auth-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5);
-  opacity: 0.96;
+  background: var(--color-primary-dark);
 }
 
-.auth-button:active {
-  transform: translateY(1px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+.auth-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
-/* Small text inside card (terms / forgot password) */
+/* Meta */
 .auth-meta {
-  margin-top: 10px;
-  font-size: 0.75rem;
+  margin-top: var(--spacing-md);
+  font-size: 14px;
   text-align: center;
-  color: #6b7280;
+  color: var(--text-muted);
 }
 
-/* Text under the card */
 .auth-footer {
-  margin-top: 18px;
-  font-size: 0.85rem;
-  color: #111827;
-  text-align: center;
+  margin-top: var(--spacing-lg);
+  font-size: 14px;
+  color: var(--text-muted);
 }
 
 .auth-footer a {
-  color: #111827;
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
   text-decoration: underline;
 }
 
 .auth-status {
-  margin-top: 8px;
-  font-size: 0.8rem;
+  margin-top: var(--spacing-md);
+  padding: 8px;
+  background: #fed7d7;
+  color: #c53030;
+  border-radius: var(--radius-sm);
   text-align: center;
-  color: #f97373; /* soft red for errors / messages */
+  font-size: 14px;
 }
